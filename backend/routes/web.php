@@ -17,4 +17,7 @@ use App\Http\Controllers\ArticleController;
 
 Auth::routes();
 
-Route::get('/', [ArticleController::class, 'index']);
+Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
+Route::resource('/articles', ArticleController::class)->except(['index'])->middleware('auth');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
